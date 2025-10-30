@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Tracker - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="bg-slate-50 transition-colors duration-300">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <span class="text-2xl font-bold text-slate-800">Finance Tracker</span>
+                </div>
+                <div class="flex items-center space-x-1">
+                    <a href="index.html" class="px-4 py-2 text-blue-600 bg-blue-50 rounded-lg font-medium transition-all duration-200">Dashboard</a>
+                    <a href="transactions.html" class="px-4 py-2 text-slate-600 hover:bg-slate-100 rounded-lg font-medium transition-all duration-200">Transactions</a>
+                    <a href="settings.html" class="px-4 py-2 text-slate-600 hover:bg-slate-100 rounded-lg font-medium transition-all duration-200">Settings</a>
+                    <button id="themeToggle" class="ml-4 p-2 rounded-lg hover:bg-slate-100 transition-all duration-200">
+                        <svg class="w-6 h-6 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Summary Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <!-- Total Income Card -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 border-l-4 border-green-500 transform hover:scale-105 transition-all duration-300">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-slate-500 text-sm font-medium mb-1">Total Income</p>
+                        <h2 class="text-3xl font-bold text-slate-800" id="totalIncome">₹0.00</h2>
+                    </div>
+                    <div class="bg-green-100 p-3 rounded-xl">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Total Expenses Card -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 border-l-4 border-red-500 transform hover:scale-105 transition-all duration-300">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-slate-500 text-sm font-medium mb-1">Total Expenses</p>
+                        <h2 class="text-3xl font-bold text-slate-800" id="totalExpenses">₹0.00</h2>
+                    </div>
+                    <div class="bg-red-100 p-3 rounded-xl">
+                        <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Balance Card -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 border-l-4 border-blue-500 transform hover:scale-105 transition-all duration-300">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-slate-500 text-sm font-medium mb-1">Balance</p>
+                        <h2 class="text-3xl font-bold text-slate-800" id="balance">₹0.00</h2>
+                    </div>
+                    <div class="bg-blue-100 p-3 rounded-xl">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            <!-- Expenses by Category (Pie Chart) -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h3 class="text-xl font-bold text-slate-800 mb-4">Expenses by Category</h3>
+                <div class="relative h-80">
+                    <canvas id="expensesPieChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Income vs Expenses (Bar Chart) -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h3 class="text-xl font-bold text-slate-800 mb-4">Income vs Expenses</h3>
+                <div class="relative h-80">
+                    <canvas id="incomeExpensesChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Transactions -->
+        <div class="bg-white rounded-2xl shadow-lg p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-slate-800">Recent Transactions</h3>
+                <a href="transactions.html" class="text-blue-600 hover:text-blue-700 font-medium text-sm transition-colors duration-200">View All →</a>
+            </div>
+            <div id="recentTransactionsList" class="space-y-3">
+                <!-- Transactions will be loaded here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script type="module" src="assets/js/main.js"></script>
+    <script type="module" src="assets/js/storage.js"></script>
+    <script type="module" src="assets/js/charts.js"></script>
+</body>
+</html>
