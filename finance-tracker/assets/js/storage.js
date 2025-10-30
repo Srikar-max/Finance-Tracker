@@ -8,8 +8,8 @@ const STORAGE_KEYS = {
 
 // Default categories
 const DEFAULT_CATEGORIES = {
-    income: ['Salary', 'Freelance', 'Business', 'Investment', 'Gift', 'Other Income'],
-    expense: ['Food & Dining', 'Transportation', 'Shopping', 'Entertainment', 'Bills & Utilities', 'Healthcare', 'Education', 'Travel', 'Groceries', 'Other Expense']
+    income: ['💰 Salary', '💼 Freelance', '🏢 Business', '📈 Investment', '🎁 Gift', '💵 Other Income'],
+    expense: ['🍔 Food & Dining', '🚗 Transportation', '🛍️ Shopping', '🎬 Entertainment', '💡 Bills & Utilities', '⚕️ Healthcare', '📚 Education', '✈️ Travel', '🛒 Groceries', '💸 Other Expense']
 };
 
 // Get all transactions
