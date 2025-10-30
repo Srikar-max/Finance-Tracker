@@ -141,8 +141,11 @@ function updateCategoryOptions() {
     const categorySelect = document.getElementById('category');
     const categories = getCategories(currentType);
     
+    // Ensure categories is always an array
+    const categoryArray = Array.isArray(categories) ? categories : [];
+    
     categorySelect.innerHTML = '<option value="">Select Category</option>';
-    categories.forEach(cat => {
+    categoryArray.forEach(cat => {
         const option = document.createElement('option');
         option.value = cat;
         option.textContent = cat;
