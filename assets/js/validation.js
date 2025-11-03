@@ -3,7 +3,7 @@
 export function validateTransaction(data) {
     const errors = [];
     
-    // Validate type
+    
     if (!data.type || (data.type !== 'income' && data.type !== 'expense')) {
         errors.push('Please select a valid transaction type');
     }
